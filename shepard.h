@@ -63,24 +63,6 @@ class Shepard
 				points.push_back(Point(x, y));
 			}
 
-			// interpolate RGB colors at data points
-			double r = 0.0;
-			double g = 0.0;
-			double b = 0.0;
-			std::list<Point>::iterator pit = points.end();
-			std::prev(pit, nb_points);
-			std::list<double>::iterator wit = weights.begin();
-			for (/**/; pit != points.end(); ++pit, ++wit)
-			{
-				const Point &p = *pit;
-				const double w = *wit;
-				const int xp = (int)p.x();
-				const int yp = (int)p.y();
-				r += w * (double)input(xp, yp, 0);
-				g += w * (double)input(xp, yp, 1);
-				b += w * (double)input(xp, yp, 2);
-			}
-
 			double pave_err = 1000.0;
 			double power = 4.0;
 			ave_err = 0.0;
@@ -98,13 +80,27 @@ class Shepard
 					{
 						// compute weights for each data points
 						std::list<double> weights;
-
+						std::list<Point>::iterator pit = points.end();
+						std::prev(pit, nb_points);
 						const double sum = this->compute_weights(x, y,
 																 pit, points.end(), power,
 																 std::back_inserter(weights));
-						r /= sum; // note normalization
-						g /= sum;
-						b /= sum;
+						// interpolate RGB colors at data points
+						double r = 0.0;
+						double g = 0.0;
+						double b = 0.0;
+
+						std::list<double>::iterator wit = weights.begin();
+						for (/**/; pit != points.end(); ++pit, ++wit)
+						{
+							const Point &p = *pit;
+							const double w = *wit / sum; // note normalization
+							const int xp = (int)p.x();
+							const int yp = (int)p.y();
+							r += w * (double)input(xp, yp, 0);
+							g += w * (double)input(xp, yp, 1);
+							b += w * (double)input(xp, yp, 2);
+						}
 
 						// write pixel color
 						output.atXY(x, y, 0) = (unsigned char)r;
