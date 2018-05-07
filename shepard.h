@@ -17,7 +17,7 @@ class Shepard
 	double ave_err;
 
   public:
-	Shepard() {}
+	Shepard() : ave_err(0.0) {}
 	~Shepard() {}
 
   public:
@@ -44,17 +44,17 @@ class Shepard
 		// generate initial points to interpolate
 		// at the four image corners
 		std::list<Point> points;
-		// points.push_back(Point(0.0, 0.0));
-		// points.push_back(Point(width - 1.0, 0.0));
-		// points.push_back(Point(0.0, height - 1.0));
-		// points.push_back(Point(width - 1.0, height - 1.0));
+		points.push_back(Point(0.0, 0.0));
+		points.push_back(Point(width - 1.0, 0.0));
+		points.push_back(Point(0.0, height - 1.0));
+		points.push_back(Point(width - 1.0, height - 1.0));
 
 		// interpolation
 		std::cout << "interpolating...";
 		CImg<unsigned char> output(width, height, 1, 3, 0); // color image with pixels set to
 		CImg<unsigned char> err(width, height, 1, 1, 0);	//error image
-		file.open("data0.csv", std::ios::app | std::ios::in | std::ios::out);
-		for (int j = 0; j != 100; ++j)
+		file.open("data.csv", std::ios::app | std::ios::in | std::ios::out);
+		for (int j = 0; j != 80; ++j)
 		{
 			for (int i = 0; i != nb_points; ++i)
 			{
@@ -64,8 +64,7 @@ class Shepard
 			}
 
 			double pave_err = 1000.0;
-			double power = 4.0;
-			ave_err = 0.0;
+			double power = 1.0;
 			while (ave_err < pave_err && power != maxpower)
 			{
 				// simple ASCII progress bar
@@ -73,7 +72,7 @@ class Shepard
 
 				if (ave_err)
 					pave_err = ave_err;
-
+				ave_err = 0.0;
 				for (int x = 0; x != width; ++x)
 				{
 					for (int y = 0; y != height; ++y)
@@ -106,9 +105,9 @@ class Shepard
 						output.atXY(x, y, 1) = (unsigned char)g;
 						output.atXY(x, y, 2) = (unsigned char)b;
 
-						double er = (double)abs(input(x, y, 0) - r);
-						double eg = (double)abs(input(x, y, 1) - g);
-						double eb = (double)abs(input(x, y, 2) - b);
+						double er = abs((double)input(x, y, 0) - r);
+						double eg = abs((double)input(x, y, 1) - g);
+						double eb = abs((double)input(x, y, 2) - b);
 						double gray = (er + eg + eb) / 3;
 						ave_err += gray;
 
@@ -120,15 +119,14 @@ class Shepard
 				power++;
 			}
 			ave_err = pave_err;
-			file << ave_err << ',';
-			file << (power - 1) << "\n";
+			file << (j + 1) << ',' << ave_err << ',' << (power - 1) << "\n";
 		}
 		file.close();
 		std::cout << "done" << std::endl;
 
 		std::cout << "write image...";
 		output.save_bmp(pOutput);
-		err.save_bmp("err0.bmp");
+		err.save_bmp("err"+pOutput);
 		std::cout << "done" << std::endl;
 
 		return true;

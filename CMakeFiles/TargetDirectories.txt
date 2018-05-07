@@ -1,3 +1,3 @@
-C:/Users/sszz/Desktop/cpp/tpnew_barycentric/CMakeFiles/edit_cache.dir
-C:/Users/sszz/Desktop/cpp/tpnew_barycentric/CMakeFiles/shepard.dir
-C:/Users/sszz/Desktop/cpp/tpnew_barycentric/CMakeFiles/rebuild_cache.dir
+C:/Users/sszz/Desktop/cpp/tpnew_barycentric0/CMakeFiles/edit_cache.dir
+C:/Users/sszz/Desktop/cpp/tpnew_barycentric0/CMakeFiles/shepard.dir
+C:/Users/sszz/Desktop/cpp/tpnew_barycentric0/CMakeFiles/rebuild_cache.dir

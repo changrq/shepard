@@ -53,10 +53,10 @@ RM = "C:\Program Files\CMake\bin\cmake.exe" -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\sszz\Desktop\cpp\tpnew_barycentric
+CMAKE_SOURCE_DIR = C:\Users\sszz\Desktop\cpp\tpnew_barycentric0
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\sszz\Desktop\cpp\tpnew_barycentric
+CMAKE_BINARY_DIR = C:\Users\sszz\Desktop\cpp\tpnew_barycentric0
 
 #=============================================================================
 # Target rules for target CMakeFiles/shepard.dir
@@ -65,7 +65,7 @@ CMAKE_BINARY_DIR = C:\Users\sszz\Desktop\cpp\tpnew_barycentric
 CMakeFiles/shepard.dir/all:
 	$(MAKE) -f CMakeFiles\shepard.dir\build.make CMakeFiles/shepard.dir/depend
 	$(MAKE) -f CMakeFiles\shepard.dir\build.make CMakeFiles/shepard.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\sszz\Desktop\cpp\tpnew_barycentric\CMakeFiles --progress-num=1,2 "Built target shepard"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\sszz\Desktop\cpp\tpnew_barycentric0\CMakeFiles --progress-num=1,2 "Built target shepard"
 .PHONY : CMakeFiles/shepard.dir/all
 
 # Include target in all.
@@ -75,9 +75,9 @@ all: CMakeFiles/shepard.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/shepard.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\sszz\Desktop\cpp\tpnew_barycentric\CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\sszz\Desktop\cpp\tpnew_barycentric0\CMakeFiles 2
 	$(MAKE) -f CMakeFiles\Makefile2 CMakeFiles/shepard.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\sszz\Desktop\cpp\tpnew_barycentric\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\sszz\Desktop\cpp\tpnew_barycentric0\CMakeFiles 0
 .PHONY : CMakeFiles/shepard.dir/rule
 
 # Convenience name for target.
