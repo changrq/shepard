@@ -1,0 +1,20 @@
+install cmake
+verify that you have a C++ compiler 
+
+go into folder where the sources are (where file CMakeLists.txt is)
+
+execute cmake-gui ("cmake-gui ." on Linux)
+drag & drop file CMakeLists.txt in box "where is source code"
+add "/build" to path in box "where to build"
+press configure
+
+windows:
+- select eg Visual Studio 14 2015, 64 or 32 bits
+- press generate
+- open build/shepard.sln
+- compile in release mode
+- go into release folder
+- open command-line windows
+- execute e.g. "shepard 10 2 ..\..\data\rainbow.bmp out.bmp"
+- open file out.bmp
+
